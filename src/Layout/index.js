@@ -1,17 +1,8 @@
-import React from "react";
-import Header from "./Header";
-import NotFound from "./NotFound";
+import React from 'react'
+import { Switch, Route } from 'react-router-dom'
 
 function Layout() {
-  return (
-    <>
-      <Header />
-      <div className="container">
-        {/* TODO: Implement the screen starting here */}
-        <NotFound />
-      </div>
-    </>
-  );
+	return <div className='container'></div>
 }
 
-export default Layout;
+export default Layout
