@@ -4,7 +4,7 @@ import { Link, useHistory } from 'react-router-dom'
 import { deleteDeck, listDecks } from '../utils/api/index'
 import { Button } from './Button'
 
-function Home() {
+export default function Home() {
 	const [deckList, setDeckList] = useState([])
 	const history = useHistory([])
 
@@ -53,5 +53,3 @@ function Home() {
 		return <p>Loading...</p>
 	}
 }
-
-export default Home

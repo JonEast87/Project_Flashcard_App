@@ -4,7 +4,7 @@ import { readDeck, deleteCard, deleteDeck } from '../utils/api/index'
 
 import { Button } from './Button'
 
-function Deck() {
+export default function Deck() {
 	const { deckId } = useParams()
 	const history = useHistory()
 	const { url } = useRouteMatch()
@@ -98,5 +98,3 @@ function Deck() {
 		return <p>Loading...</p>
 	}
 }
-
-export default Deck

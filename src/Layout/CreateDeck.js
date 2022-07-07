@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useHistory, Link } from 'react-router-dom'
 import { createDeck } from '../utils/api/index'
 
-function CreateDeck() {
+export default function CreateDeck() {
 	const initialFormData = {
 		name: '',
 		description: '',
@@ -73,5 +73,3 @@ function CreateDeck() {
 		</div>
 	)
 }
-
-export default CreateDeck

@@ -2,7 +2,7 @@ import React from 'react'
 import { useEffect, useState } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 
-function Card({ currentCards }) {
+export default function Card({ currentCards }) {
 	const history = useHistory()
 	const deckId = useParams()
 
@@ -24,8 +24,8 @@ function Card({ currentCards }) {
 		setSideOfCard(!sideOfCard)
 	}
 
-	const handleNext = (e) => {
-		e.preventDefault()
+	const handleNext = (event) => {
+		event.preventDefault()
 		setSideOfCard(!sideOfCard)
 		setCardCount((current) => current + 1)
 		setStudyCardCount((current) => current + 1)
@@ -100,7 +100,7 @@ function Card({ currentCards }) {
 				</div>
 			)
 		}
+	} else {
+		return <p>Loading...</p>
 	}
-	return <p>Loading...</p>
 }
-export default Card

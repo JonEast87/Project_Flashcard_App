@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link, useHistory, useParams } from 'react-router-dom'
 import { createCard, readDeck } from '../utils/api'
 
-function CreateCard() {
+export default function CreateCard() {
 	const params = useParams()
 	const history = useHistory()
 
@@ -24,13 +24,13 @@ function CreateCard() {
 		loadDeck()
 	}, [params])
 
-	const handleDone = (e) => {
-		e.preventDefault()
+	const handleDone = (event) => {
+		event.preventDefault()
 		history.push(`/decks/${params.deckId}`)
 	}
 
-	const handleSubmit = (e) => {
-		e.preventDefault()
+	const handleSubmit = (event) => {
+		event.preventDefault()
 		const card = {
 			front: front,
 			back: back,
@@ -93,8 +93,7 @@ function CreateCard() {
 				</form>
 			</div>
 		)
+	} else {
+		return <p>Loading...</p>
 	}
-	return <p>Loading...</p>
 }
-
-export default CreateCard
