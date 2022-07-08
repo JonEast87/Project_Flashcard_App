@@ -11,17 +11,25 @@ export default function CreateCard() {
 	const [currentDeck, setCurrentDeck] = useState(null)
 
 	useEffect(() => {
+		const abortController = new AbortController()
 		async function loadDeck() {
 			setCurrentDeck([])
 			try {
 				const response = await readDeck(params.deckId)
 				setCurrentDeck(response)
 			} catch (error) {
+				if (error.name === 'AbortError') {
+					console.log('Aborted', params)
+				} else {
+					throw error
+				}
 				console.log(error)
 			}
 		}
 
 		loadDeck()
+
+		return () => abortController.abort()
 	}, [params])
 
 	const handleDone = (event) => {
@@ -38,6 +46,7 @@ export default function CreateCard() {
 		}
 
 		createCard(params.deckId, card).then((response) => {
+			console.log(response)
 			setFront('Front side of card')
 			setBack('Back side of card')
 		})
@@ -54,17 +63,15 @@ export default function CreateCard() {
 								<Link to='/'>Home</Link>
 							</li>
 							<li className='breadcrumb-item'>
-								<Link to={`/decks/${currentDeck.id}`}>View Deck</Link>
+								<Link to={`/decks/${currentDeck.id}`}>{currentDeck.name}</Link>
 							</li>
 							<li className='breadcrumb-item active' aria-current='page'>
-								Create Card
+								Add Card
 							</li>
 						</ol>
 					</nav>
 				</div>
-				<div>
-					<h2>{currentDeck.name}: Add Card</h2>
-				</div>
+				<h2>{currentDeck.name}: Add Card</h2>
 				<form onSubmit={handleSubmit} className='form-group'>
 					<label htmlFor='front'>Front</label>
 					<textarea
@@ -82,7 +89,7 @@ export default function CreateCard() {
 						value={back}
 						onChange={(e) => setBack(e.target.value)}
 					/>
-					<button onClick={handleDone} className='btn btn-primary mr-2'>
+					<button onClick={handleDone} className='btn btn-secondary mr-2'>
 						Done
 					</button>
 					<button type='submit' className='btn btn-primary'>

@@ -29,6 +29,18 @@
       "back": "Between us, something smells!",
       "deckId": 2,
       "id": 3
+    },
+    {
+      "front": "Front",
+      "back": "Back",
+      "deckId": 2,
+      "id": 4
+    },
+    {
+      "front": "Front side of card",
+      "back": "Back side of card",
+      "deckId": 2,
+      "id": 5
     }
   ]
 }

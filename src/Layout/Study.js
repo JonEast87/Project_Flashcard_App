@@ -35,7 +35,7 @@ export default function Study() {
 								<Link to='/'>Home</Link>
 							</li>
 							<li className='breadcrumb-item'>
-								<Link to={`/decks/${currentDeck.id}`}>View Deck</Link>
+								<Link to={`/decks/${currentDeck.id}`}>{currentDeck.name}</Link>
 							</li>
 							<li className='breadcrumb-item active'>Study Deck</li>
 						</ol>

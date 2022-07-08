@@ -17,7 +17,7 @@ export default function EditDeck() {
 				const response = await readDeck(deckId)
 				setCurrentDeck(response)
 				setCurrentCard(response.cards.find((card) => card.id + '' === cardId))
-				setFront(response.cards.find((card) => card.id + '' === cardId).back)
+				setFront(response.cards.find((card) => card.id + '' === cardId).front)
 				setBack(response.cards.find((card) => card.id + '' === cardId).back)
 			} catch (error) {
 				console.log(error)
@@ -81,7 +81,7 @@ export default function EditDeck() {
 						value={back}
 						onChange={(event) => setBack(event.target.value)}
 					/>
-					<button onClick={handleSubmit} className='btn btn-secondary mr-2'>
+					<button onClick={handleCancel} className='btn btn-secondary mr-2'>
 						Cancel
 					</button>
 					<button type='submit' className='btn btn-primary mr-2'>
