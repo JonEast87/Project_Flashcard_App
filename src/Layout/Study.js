@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom'
 import { readDeck } from '../utils/api'
 import Card from './Card'
 
-function Study() {
+export default function Study() {
 	const params = useParams()
 	const [currentDeck, setCurrentDeck] = useState(null)
 	const [currentCards, setCurrentCards] = useState(null)
@@ -47,7 +47,7 @@ function Study() {
 				<Card currentCards={currentCards}></Card>
 			</div>
 		)
+	} else {
+		return <p>Loading...</p>
 	}
 }
-
-export default Study

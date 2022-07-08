@@ -13,7 +13,7 @@ export default function CreateDeck() {
 	const handleChange = ({ target }) => {
 		setFormData({
 			...formData,
-			[target.name]: target.name,
+			[target.name]: target.value,
 		})
 	}
 
@@ -26,11 +26,11 @@ export default function CreateDeck() {
 	return (
 		<div>
 			<nav aria-label='breadcrumb'>
-				<ol class='breadcrumb'>
-					<li class='breadcrumb-item'>
+				<ol className='breadcrumb'>
+					<li className='breadcrumb-item'>
 						<Link to='/'>Home</Link>
 					</li>
-					<li class='breadcrumb-item active' aria-current='page'>
+					<li className='breadcrumb-item active' aria-current='page'>
 						Create Deck
 					</li>
 				</ol>
@@ -48,8 +48,8 @@ export default function CreateDeck() {
 					className='form-control mb-3'
 					value={formData.name}
 					placeholder='Name of Deck'
+					required
 				/>
-
 				<label htmlFor='deckDescription'>Description</label>
 				<textarea
 					id='deckDescription'
@@ -59,6 +59,7 @@ export default function CreateDeck() {
 					value={formData.description}
 					rows='4'
 					placeholder='Description of deck contents'
+					required
 				/>
 				<button
 					type='button'

@@ -4,7 +4,7 @@ import { useHistory, useParams } from 'react-router-dom'
 
 export default function Card({ currentCards }) {
 	const history = useHistory()
-	const deckId = useParams()
+	const { deckId } = useParams()
 
 	const [cardCount, setCardCount] = useState(1)
 	const [sideOfCard, setSideOfCard] = useState(null)
@@ -53,11 +53,9 @@ export default function Card({ currentCards }) {
 				<div className='card border-primary mb-3'>
 					<div className='card-body'>
 						<h4 className='card-title'>
-							{' '}
 							Card {cardCount} of {currentCards.length}
 						</h4>
 						<p className='card-text'> {studyCard.front} </p>
-						<br />
 						<button onClick={handleFlip} className='btn btn-primary'>
 							Flip
 						</button>
@@ -73,7 +71,6 @@ export default function Card({ currentCards }) {
 							Card {cardCount} of {currentCards.length}
 						</h4>
 						<p className='card-text'> {studyCard.back} </p>
-						<br />
 						<button onClick={handleFlip} className='btn btn-primary mr-3'>
 							Flip
 						</button>
@@ -89,13 +86,12 @@ export default function Card({ currentCards }) {
 					<div className='card-body mb-3'>
 						<h4 className='card-title'>Not enough cards.</h4>
 						<p className='card-text mb-3'>
-							You need at least 3 cards to study. There are{' '}
+							You need at least 3 cards to study. There are
 							{currentCards.length} in this deck.
 						</p>
 					</div>
 					<button onClick={handleAddCards} className='btn btn-primary'>
-						{' '}
-						+ Add Cards{' '}
+						+ Add Cards
 					</button>
 				</div>
 			)

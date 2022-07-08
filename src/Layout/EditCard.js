@@ -1,83 +1,92 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useHistory, useParams } from 'react-router-dom'
-import { updateDeck, readDeck } from '../utils/api'
+import { readDeck, updateCard } from '../utils/api'
 
 export default function EditDeck() {
-	const { deckId } = useParams()
 	const history = useHistory()
+	const { deckId, cardId } = useParams()
 
+	const [front, setFront] = useState('Front side of card')
+	const [back, setBack] = useState('Back side of card')
 	const [currentDeck, setCurrentDeck] = useState(null)
-	const [name, setName] = useState('Loading...')
-	const [description, setDescription] = useState('Loading...')
+	const [currentCard, setCurrentCard] = useState(null)
 
 	useEffect(() => {
-		async function loadDeck() {
-			setCurrentDeck([])
+		async function loadCard() {
 			try {
 				const response = await readDeck(deckId)
 				setCurrentDeck(response)
-				setName(response.name)
-				setDescription(response.description)
+				setCurrentCard(response.cards.find((card) => card.id + '' === cardId))
+				setFront(response.cards.find((card) => card.id + '' === cardId).back)
+				setBack(response.cards.find((card) => card.id + '' === cardId).back)
 			} catch (error) {
 				console.log(error)
 			}
 		}
 
-		loadDeck()
-	}, [deckId])
-
-	const handleEditSubmit = (event) => {
-		event.preventDefault()
-		const deck = {
-			...currentDeck,
-			name,
-			description,
-		}
-		updateDeck(deck).then((response) => {
-			console.log(response)
-			setCurrentDeck(response)
-			history.push(`/decks/${currentDeck.id}`)
-		})
-	}
+		loadCard()
+	}, [deckId, cardId])
 
 	const handleCancel = (event) => {
 		event.preventDefault()
-		history.push(`/decks/${currentDeck.id}`)
+		history.push(`/decks/${deckId}`)
 	}
 
-	if (currentDeck) {
+	const handleSubmit = (event) => {
+		event.preventDefault()
+		const card = {
+			...currentCard,
+			front,
+			back,
+		}
+		updateCard(card).then((response) => {
+			setCurrentCard(response)
+			history.push(`/decks/${deckId}`)
+		})
+	}
+
+	if (currentDeck && currentCard) {
 		return (
 			<div>
-				<nav aria-label='breadcrumb'>
-					<ol class='breadcrumb'>
-						<li class='breadcrumb-item'>
-							<Link to='/'>Home</Link>
-						</li>
-						<li class='breadcrumb-item active'>
-							<Link to={`/decks/${deckId}`}>View Deck</Link>
-						</li>
-						<li class='breadcrumb-item active' aria-current='page'>
-							Edit Deck
-						</li>
-					</ol>
-				</nav>
-				<h2>Edit Deck</h2>
-				<form onSubmit={handleEditSubmit}>
-					<label>Name</label>
-					<input
-						type='text'
-						onChange={(event) => setName(event.target.value)}
-						required
-						value={name}
-					/>
-					<label>Description</label>
+				<div>
+					<nav aria-label='breadcrumb'>
+						<ol className='breadcrumb'>
+							<li className='breadcrumb-item'>
+								<Link to='/'>Home</Link>
+							</li>
+							<li className='breadcrumb-item'>
+								<Link to={`/decks/${deckId}`}>View Deck</Link>
+							</li>
+							<li className='breadcrumb-item' aria-current='page'>
+								Edit Page
+							</li>
+						</ol>
+					</nav>
+				</div>
+				<h2>Edit Card</h2>
+				<form onSubmit={handleSubmit} className='form-group'>
+					<label htmlFor='front'>Front</label>
 					<textarea
+						className='form-control'
+						rows='3'
 						required
-						onChange={(event) => setDescription(event.target.value)}
-						value={description}
+						value={front}
+						onChange={(event) => setFront(event.target.value)}
 					/>
-					<button onClick={handleCancel}>Cancel</button>
-					<button type='submit'>Submit</button>
+					<label htmlFor='back'>Back</label>
+					<textarea
+						className='form-control'
+						rows='3'
+						required
+						value={back}
+						onChange={(event) => setBack(event.target.value)}
+					/>
+					<button onClick={handleSubmit} className='btn btn-secondary mr-2'>
+						Cancel
+					</button>
+					<button type='submit' className='btn btn-primary mr-2'>
+						Submit
+					</button>
 				</form>
 			</div>
 		)

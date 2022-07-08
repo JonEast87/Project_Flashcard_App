@@ -23,12 +23,17 @@ export default function Home() {
 	if (deckList) {
 		return (
 			<div>
+				<div>
+					<Link to='/decks/new'>
+						<Button>Create Deck</Button>
+					</Link>
+				</div>
 				{deckList.map((deck) => (
 					<div key={deck.id} className='card mb-3'>
 						<div className='card-body'>
 							<h4 className='card-title'>{deck.name}</h4>
 							<h6 className='card-subtitle mb-2 text-muted'>
-								{deck.cards.length}
+								{deck.cards.length} cards
 							</h6>
 							<p className='card-text'>{deck.description}</p>
 							<Link to={`/decks/${deck.id}`}>

@@ -49,14 +49,14 @@ export default function CreateCard() {
 			<div>
 				<div>
 					<nav aria-label='breadcrumb'>
-						<ol class='breadcrumb'>
-							<li class='breadcrumb-item'>
+						<ol className='breadcrumb'>
+							<li className='breadcrumb-item'>
 								<Link to='/'>Home</Link>
 							</li>
-							<li class='breadcrumb-item'>
-								<Link to={`/decks/${currentDeck.id}`}> View Deck </Link>
+							<li className='breadcrumb-item'>
+								<Link to={`/decks/${currentDeck.id}`}>View Deck</Link>
 							</li>
-							<li class='breadcrumb-item active' aria-current='page'>
+							<li className='breadcrumb-item active' aria-current='page'>
 								Create Card
 							</li>
 						</ol>
@@ -74,8 +74,7 @@ export default function CreateCard() {
 						value={front}
 						onChange={(e) => setFront(e.target.value)}
 					/>
-					<br />
-					<label>Back</label>
+					<label htmlFor='back'>Back</label>
 					<textarea
 						className='form-control'
 						rows='3'
@@ -83,7 +82,6 @@ export default function CreateCard() {
 						value={back}
 						onChange={(e) => setBack(e.target.value)}
 					/>
-					<br />
 					<button onClick={handleDone} className='btn btn-primary mr-2'>
 						Done
 					</button>

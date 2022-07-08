@@ -4,6 +4,11 @@
       "id": 1,
       "name": "Rendering in React",
       "description": "React's component structure allows for quickly building a complex web application that relies on DOM manipulation. "
+    },
+    {
+      "name": "Mock squash",
+      "description": "MS",
+      "id": 2
     }
   ],
   "cards": [
@@ -18,6 +23,12 @@
       "front": "How do you modify the state of a different React component?",
       "back": "Not at all! State is visible to the component only.",
       "deckId": 1
+    },
+    {
+      "front": "What did the left eye say to the right eye?",
+      "back": "Between us, something smells!",
+      "deckId": 2,
+      "id": 3
     }
   ]
 }
