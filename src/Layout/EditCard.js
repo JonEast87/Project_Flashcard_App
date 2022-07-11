@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useHistory, useParams } from 'react-router-dom'
 import { readDeck, updateCard } from '../utils/api'
+import FormCard from './FormCard'
 
 export default function EditDeck() {
 	const history = useHistory()
@@ -64,30 +65,14 @@ export default function EditDeck() {
 					</nav>
 				</div>
 				<h2>Edit Card</h2>
-				<form onSubmit={handleSubmit} className='form-group'>
-					<label htmlFor='front'>Front</label>
-					<textarea
-						className='form-control'
-						rows='3'
-						required
-						value={front}
-						onChange={(event) => setFront(event.target.value)}
-					/>
-					<label htmlFor='back'>Back</label>
-					<textarea
-						className='form-control'
-						rows='3'
-						required
-						value={back}
-						onChange={(event) => setBack(event.target.value)}
-					/>
-					<button onClick={handleCancel} className='btn btn-secondary mr-2'>
-						Cancel
-					</button>
-					<button type='submit' className='btn btn-primary mr-2'>
-						Submit
-					</button>
-				</form>
+				<FormCard
+					handleSubmit={handleSubmit}
+					front={front}
+					back={back}
+					setFront={setFront}
+					setBack={setBack}
+					handleDone={handleCancel}
+				/>
 			</div>
 		)
 	} else {

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useHistory, useParams } from 'react-router-dom'
 import { createCard, readDeck } from '../utils/api'
+import FormCard from './FormCard'
 
 export default function CreateCard() {
 	const params = useParams()
@@ -72,30 +73,16 @@ export default function CreateCard() {
 					</nav>
 				</div>
 				<h2>{currentDeck.name}: Add Card</h2>
-				<form onSubmit={handleSubmit} className='form-group'>
-					<label htmlFor='front'>Front</label>
-					<textarea
-						className='form-control'
-						rows='3'
-						required
-						value={front}
-						onChange={(e) => setFront(e.target.value)}
+				<div>
+					<FormCard
+						handleSubmit={handleSubmit}
+						front={front}
+						back={back}
+						setFront={setFront}
+						setBack={setBack}
+						handleDone={handleDone}
 					/>
-					<label htmlFor='back'>Back</label>
-					<textarea
-						className='form-control'
-						rows='3'
-						required
-						value={back}
-						onChange={(e) => setBack(e.target.value)}
-					/>
-					<button onClick={handleDone} className='btn btn-secondary mr-2'>
-						Done
-					</button>
-					<button type='submit' className='btn btn-primary'>
-						Save
-					</button>
-				</form>
+				</div>
 			</div>
 		)
 	} else {

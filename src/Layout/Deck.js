@@ -82,6 +82,7 @@ export default function Deck() {
 										onClick={() => {
 											if (window.confirm('Delete this card?')) {
 												deleteCard(`${card.id}`)
+												window.location.reload()
 												history.push(`/decks/${deckId}`)
 											}
 										}}>
