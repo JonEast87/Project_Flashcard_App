@@ -9,6 +9,11 @@
       "name": "Mock squash",
       "description": "MS",
       "id": 2
+    },
+    {
+      "name": "Green",
+      "description": "Moods of Green",
+      "id": 3
     }
   ],
   "cards": [
